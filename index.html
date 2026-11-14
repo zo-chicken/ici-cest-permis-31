@@ -260,6 +260,101 @@ footer a { text-decoration: none; } footer a:hover { color: #fff; text-decoratio
   .pedals { width: 170px; font-size: 13px; }
   .step { grid-template-columns: 1fr; } .step::before { width: 54px; height: 54px; }
 }
+
+/* ---------- Repères de navigation ---------- */
+.nav-links a.on { background: rgba(255, 255, 255, .16); }
+.nav-menu a.on { background: rgba(255, 255, 255, .12); box-shadow: inset 4px 0 0 var(--sun); }
+.tabbar { display: none; }
+
+/* ---------- Mobile : barre fixe, contenu resserré ---------- */
+@media (max-width: 860px) {
+  /* Barre du haut pleine largeur, fond plein */
+  .nav-shell { top: calc(env(safe-area-inset-top, 0px) + 8px); }
+  .nav { width: 100%; justify-content: space-between; padding: 6px 6px 6px 6px; border-radius: 18px; }
+  .nav-logo { height: 46px; } .nav-logo img { height: 36px; }
+  .nav-cta { display: inline-flex !important; margin-left: auto; padding: 11px 14px; font-size: 14px; }
+  .nav-menu.open { top: calc(env(safe-area-inset-top, 0px) + 72px); }
+
+  /* Barre d'onglets en bas */
+  .tabbar { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; position: fixed; z-index: 48; left: 0; right: 0; bottom: 0;
+    padding: 8px max(8px, env(safe-area-inset-right, 0px)) calc(8px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px));
+    background: var(--ink); border-top: var(--bw) solid var(--ink); box-shadow: 0 -8px 24px rgba(11, 29, 58, .18); }
+  .tabbar a { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 7px 2px 6px; border-radius: 12px; color: rgba(255, 255, 255, .72); text-decoration: none; font-weight: 700; font-size: 11px; }
+  .tabbar a svg { width: 22px; height: 22px; }
+  .tabbar a.on { background: var(--red); color: #fff; }
+  body { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+  html { scroll-padding-top: 84px; }
+
+  /* Rythme vertical plus court */
+  .band { padding-block: 56px; }
+  .sec-head { margin-bottom: 28px; gap: 14px; }
+  .hero { padding-top: calc(env(safe-area-inset-top, 0px) + 96px); padding-bottom: 40px; }
+  .hero-grid { gap: 24px; }
+  .stack { min-height: 300px; }
+
+  /* Gammes : 2 × 2 compactes */
+  .ranges { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 28px; }
+  .range { min-height: 0; padding: 16px; gap: 6px; box-shadow: 0 6px 0 var(--ink); }
+  .range p { display: none; }
+  .range .k { font-size: 22px; }
+  .range .from { font-size: 12px; } .range .from b { font-size: 26px; }
+
+  /* Panneau tarifs : onglets sur une ligne, forfaits en liste */
+  .tarifs-panel { padding: 14px; }
+  .tp-head { flex-direction: column; align-items: stretch; gap: 10px; margin-bottom: 14px; }
+  .seg { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .seg::-webkit-scrollbar { display: none; }
+  .seg button { flex: 1 0 auto; padding: 10px 12px; white-space: nowrap; }
+  .seg[aria-label="Gamme"] { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .seg[aria-label="Gamme"] button { padding: 10px 2px; font-size: 12.5px; }
+  .seg[aria-label="Boîte de vitesses"] button { flex: 1 1 0; }
+  .packs { grid-template-columns: 1fr; gap: 10px; }
+  .pack { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 12px; padding: 14px 16px; box-shadow: 0 4px 0 var(--ink); }
+  .pack .n { grid-column: 1; font-size: 14px; }
+  .pack .h { grid-column: 1; font-size: 13px; }
+  .pack .p { grid-column: 2; grid-row: 1 / span 2; align-self: center; font-size: 28px; margin: 0; }
+  .pack ul { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 2px 14px; margin-top: 8px; padding-top: 8px; font-size: 12.5px; }
+  .pack ul li:last-child { display: none; }
+  .tp-notes { gap: 10px; margin-top: 16px; }
+
+  /* Atouts : 2 colonnes */
+  .why { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .why .card { min-height: 0; padding: 16px 14px; gap: 6px; box-shadow: 0 6px 0 var(--ink); }
+  .why .big { font-size: 34px; }
+  .why h3 { font-size: 15px; }
+  .why p { font-size: 13px; }
+
+  /* Étapes plus serrées */
+  .steps { gap: 12px; }
+  .step { grid-template-columns: 48px minmax(0, 1fr); gap: 14px; padding: 16px; }
+  .step::before { width: 48px; height: 48px; font-size: 24px; border-radius: 14px; }
+  .step h3 { font-size: 17px; }
+  .step p { font-size: 14px; }
+  .rule-box { padding: 16px; font-size: 15px; }
+
+  /* Profils : carrousel horizontal */
+  .who { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 2px 18px; margin-inline: -2px; scrollbar-width: none; }
+  .who::-webkit-scrollbar { display: none; }
+  .who .card { flex: 0 0 78%; scroll-snap-align: start; padding: 18px; box-shadow: 0 6px 0 var(--ink); }
+  .who .card:last-child { margin-right: 2px; }
+
+  /* Voitures : plus compactes */
+  .cars { gap: 18px; }
+  .car { padding: 18px; gap: 10px; box-shadow: 0 7px 0 #fff; }
+  .car svg { max-height: 120px; }
+
+  /* Candidat libre, agence, FAQ */
+  .tl { padding: 14px; gap: 12px; grid-template-columns: 40px minmax(0, 1fr); }
+  .tl b.n { width: 40px; height: 40px; font-size: 18px; }
+  .map { min-height: 220px; }
+  .faq summary { padding: 16px 18px; font-size: 15.5px; }
+  .faq .a { padding: 0 18px 16px; font-size: 15px; }
+  .final h2 { font-size: clamp(38px, 11vw, 60px); }
+}
+@media (max-width: 380px) {
+  .nav-cta { display: none !important; }
+  .why .big { font-size: 28px; }
+}
 </style>
 
 </head>
@@ -290,6 +385,13 @@ footer a { text-decoration: none; } footer a:hover { color: #fff; text-decoratio
   <a href="#faq">FAQ</a>
   <a href="#agence" style="background: var(--red)">Réserver une voiture</a>
 </div>
+<nav class="tabbar" aria-label="Accès rapide">
+  <a href="#concept"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>Concept</a>
+  <a href="#tarifs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>Tarifs</a>
+  <a href="#vehicules"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16l1.5-5.5A2 2 0 0 1 8.4 9h7.2a2 2 0 0 1 1.9 1.5L19 16M3 16h18v3H3z"/><circle cx="7" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg>Voitures</a>
+  <a href="#candidat-libre"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M7 15h4M7 11h10"/></svg>Libre</a>
+  <a href="#agence"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Agence</a>
+</nav>
 
 <main id="top">
   <!-- HERO -->
@@ -628,6 +730,19 @@ footer a { text-decoration: none; } footer a:hover { color: #fff; text-decoratio
 
   document.getElementById('open-mentions').addEventListener('click', function () { document.getElementById('mentions').open = true; });
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Section en cours : surligne le lien correspondant (barre du haut, menu, barre du bas)
+  var ids = ['concept', 'tarifs', 'vehicules', 'candidat-libre', 'agence', 'faq'];
+  var links = document.querySelectorAll('.nav-links a, .nav-menu a, .tabbar a');
+  var mark = function (id) { links.forEach(function (a) { a.classList.toggle('on', !!id && a.getAttribute('href') === '#' + id && !a.style.background); }); };
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) mark(e.target.id); });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ids.forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+    var top = new IntersectionObserver(function (entries) { if (entries[0].isIntersecting) mark(null); }, { rootMargin: '0px 0px -60% 0px' });
+    top.observe(document.querySelector('.hero'));
+  }
 })();
 </script>
 </body>
